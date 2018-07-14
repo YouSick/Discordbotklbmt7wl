@@ -55,4 +55,14 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
      
 }); 
 
+
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('كس امك')){
+        message.delete()
+    return message.reply(`**ممنوع السب**`)
+   message.delete()
+    }
+});
 client.login(process.env.BOT_TOKEN);
