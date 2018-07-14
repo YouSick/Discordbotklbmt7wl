@@ -49,7 +49,7 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
         footer: {
           text: "©Ghost"
         }
-      }}).then(msg => {msg.delete(3000)});
+      }}).then(msg => {msg.delete(100)});
                           }
 
      
