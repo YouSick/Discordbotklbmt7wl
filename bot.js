@@ -68,6 +68,7 @@ client.on('message', message => {
 
 
 
+
 client.on('message', message => {
     if (message.author.id === client.user.id) return;
     if (message.guild) {
@@ -90,6 +91,8 @@ return;
         return;
     }
 });
+
+
 
 
 client.on('message', message => {
