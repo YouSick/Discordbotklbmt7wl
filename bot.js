@@ -50,16 +50,15 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
           text: "©Ghost"
         }
       }}).then(msg => {msg.delete(100)});
-                          }
-
-     
+                          }   
 }); 
+
 
 
 
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
-    if(message.content.includes('كس امك')){
+    if(message.content.includes('test')){
         message.delete()
     return message.reply(`**ممنوع السب**`)
    message.delete()
@@ -74,7 +73,7 @@ client.on('message', message => {
     if (message.guild) {
    let embed = new Discord.RichEmbed()
     let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc1') {
+if(message.content.split(' ')[0] == prefix + 'bc') {
     if (!args[1]) {
 return;
 }
@@ -101,8 +100,5 @@ client.on('message', message => {
         message.channel.sendMessage(':ping_pong: Pong! In `' + `${client.ping}` + ' ms`');
     }
 });
-
-
-
 
 client.login(process.env.BOT_TOKEN);
