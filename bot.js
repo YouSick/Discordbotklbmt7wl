@@ -33,7 +33,7 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
 
 
  client.on("message", message => {
-    var prefix = "+";
+    var prefix = ".";
  
             var args = message.content.substring(prefix.length).split(" ");
             if (message.content.startsWith(prefix + "clear")) {
