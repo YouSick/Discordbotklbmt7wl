@@ -58,7 +58,7 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
 
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
-    if(message.content.includes('@1M7mmD_#7345')){
+    if(message.content.includes('rd 3la 1m7mmd_')){
         message.delete()
     return message.reply(`**54 ya @1M7mmD_#7345 00100**`)
    message.delete()
