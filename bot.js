@@ -113,7 +113,7 @@ if(message.content === adminprefix + "restart") {
         console.log(`⚠️ جاري اعادة تشغيل البوت... ⚠️`);
         client.destroy();
         child_process.fork(__dirname + "/الملف.js");
-        console.log(`تم اعادة تشغيل البوت`);
+        console.log(`:white_check_mark:تم اعادة تشغيل البوت`);
     }
   
   }); // By Ghost
