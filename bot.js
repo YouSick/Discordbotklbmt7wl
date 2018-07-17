@@ -102,6 +102,8 @@ client.on('message', message => {
 });
 
 
+
+
 const child_process = require("child_process");
 const adminprefix = ".";
 const devs = ['468823079523713056'];
@@ -117,6 +119,8 @@ if(message.content === adminprefix + "restart") {
     }
   
   }); // By Ghost
+
+
 
 
 client.on('message', message => {
