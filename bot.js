@@ -49,7 +49,7 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
         footer: {
           text: "©Ghost"
         }
-      }}).then(msg => {msg.delete(100)});
+      }}).then(msg => {msg.delete(1000)});
                           }   
 }); 
 
@@ -203,7 +203,14 @@ if (message.content.startsWith(".kick")) {
 
 
 
-
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('ks')){
+        message.delete()
+    return message.reply(`**Dont Sweraing!**`)
+   message.delete()
+    }
+});
 client.on('message', message => {
     if (message.author.id === client.user.id) return;
     if (message.guild) {
