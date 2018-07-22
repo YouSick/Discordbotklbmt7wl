@@ -145,7 +145,7 @@ client.on('message', message => {
 
 client.on('message', message => {
 
-    if (message.content === ".cc") {
+    if (message.content === ".cchannel") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
@@ -156,7 +156,8 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
                message.reply("تم تقفيل الشات :white_check_mark: ")
            });
              }
-if (message.content === ".sc") {
+//YouSick_#1533
+if (message.content === ".schannel") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
