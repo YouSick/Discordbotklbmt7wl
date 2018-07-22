@@ -145,7 +145,7 @@ client.on('message', message => {
 
 client.on('message', message => {
 
-    if (message.content === ".mutechannel") {
+    if (message.content === ".cc") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
@@ -156,8 +156,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
                message.reply("تم تقفيل الشات :white_check_mark: ")
            });
              }
-//™¦༺♚ƙἶղց|MaS♚༺¦™#7105
-if (message.content === ".unmutechannel") {
+if (message.content === ".sc") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
@@ -203,6 +202,7 @@ if (message.content.startsWith(".kick")) {
 
 
 
+
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
     if(message.content.includes('ks')){
@@ -216,7 +216,7 @@ client.on('message', message => {
     if (message.guild) {
    let embed = new Discord.RichEmbed()
     let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc1') {
+if(message.content.split(' ')[0] == prefix + 'bc') {
     if (!args[1]) {
 return;
 }
