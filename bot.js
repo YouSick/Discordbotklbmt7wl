@@ -49,7 +49,7 @@ client.user.setGame(`Listen To YouSick_ Orders`,"http://twitch.tv/S-F")
         footer: {
           text: "©Ghost"
         }
-      }}).then(msg => {msg.delete(1000)});
+      }}).then(msg => {msg.delete(10000)});
                           }   
 }); 
 
@@ -104,25 +104,6 @@ client.on('message', message => {
 
 
 
-const child_process = require("child_process");
-const adminprefix = ".";
-const devs = ['468823079523713056'];
-
-client.on('message', message => {
-if(message.content === adminprefix + "restart") {
-      if (!devs.includes(message.author.id)) return;
-          message.channel.send(`⚠️ **الشخص الذي اعاد تشغيل البوت ${message.author.username}**`);
-        console.log(`⚠️ جاري اعادة تشغيل البوت... ⚠️`);
-        client.destroy();
-        child_process.fork(__dirname + "/الملف.js");
-        console.log(`:white_check_mark:تم اعادة تشغيل البوت`);
-    }
-  
-  }); // By Ghost
-
-
-
-
 client.on('message', message => {
     if (message.content.startsWith(".avatar")) {
         var mentionned = message.mentions.users.first();
@@ -157,7 +138,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
            });
              }
 //YouSick_#1533
-if (message.content === ".schannel") {
+if (message.content === ".ochannel") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
@@ -212,26 +193,46 @@ client.on('message', message => {
    message.delete()
     }
 });
+
+
 client.on('message', message => {
-    if (message.author.id === client.user.id) return;
-    if (message.guild) {
-   let embed = new Discord.RichEmbed()
-    let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc') {
-    if (!args[1]) {
-return;
-}
-        message.guild.members.forEach(m => {
-   if(!message.member.hasPermission('ADMINISTRATOR')) return;
-            var bc = new Discord.RichEmbed()
-            .addField(' » الرسالة : ', args)
-            .setColor('#ff0000')
-            // m.send(`[${m}]`);
-            m.send(`${m}`,{embed: bc});
-        });
+    if (message.content.startsWith(".invites")) {
+
+    message.guild.fetchInvites()
+    .then(invites => message.channel.send(`**:busts_in_silhouette:  اتيت ب     [${invites.find(invite => invite.inviter.id === message.author.id)}]    :calling:   عضو لهذا السيرفر    `))
+         
     }
-    } else {
-        return;
-    }
+});
+
+
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = '!!';
+     
+    if(cmd === `${prefix}report`){
+        let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        if(!rUser) return message.channel.send("Idk who 2 report ??");
+        let reason = args.join(" ").slice(22);
+        if(!reason) return message.channel.send("What is the reason ??");
+    
+        let reportEmbed = new Discord.RichEmbed()
+        .setTitle("User just reported...")
+        .setColor("#f7abab")
+        .addField("- Reported User :", `${rUser} (${rUser.id})`)
+        .addField("- Reported By :", `${message.author} (${message.author.id})`)
+        .addField("- Reported In :", message.channel)
+        .addField("- Report Time :", message.createdAt.toLocaleString(),true)
+        .addField("- Reason :", reason);
+    
+        let reportschannel = message.guild.channels.find(`name`, "reports");
+        if(!reportschannel) return message.channel.send("You should to make `reports` channel.");
+    
+    
+        message.delete().catch(O_o=>{});
+        message.author.send(`<@${rUser.id}>, Reported Successfully!!`)
+        reportschannel.send(reportEmbed);
+    };
 });
 client.login(process.env.BOT_TOKEN);
