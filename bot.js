@@ -229,7 +229,7 @@ client.on('message', message =>{
     
     
         message.delete().catch(O_o=>{});
-        message.reply(`<@${rUser.id}>, Reported Successfully!!`)
+        message.channel.send(`<@${rUser.id}>, Reported Successfully!!`)
         reportschannel.send(reportEmbed);
     };
 });
