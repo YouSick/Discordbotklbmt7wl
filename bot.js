@@ -203,13 +203,11 @@ client.on('message', message => {
          
     }
 });
-
-
 client.on('message', message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let prefix = '!!';
+    let prefix = '.';
      
     if(cmd === `${prefix}report`){
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -225,15 +223,15 @@ client.on('message', message =>{
         .addField("- Reported In :", message.channel)
         .addField("- Report Time :", message.createdAt.toLocaleString(),true)
         .addField("- Reason :", reason);
-        .addField("- Staff :", @Owner @Developer @manager @Headadmin @Admin @Sr.mod );
-  
+    
         let reportschannel = message.guild.channels.find(`name`, "reports");
         if(!reportschannel) return message.channel.send("You should to make `reports` channel.");
     
     
         message.delete().catch(O_o=>{});
-        message.author.send(`<@${rUser.id}>, Reported Successfully!!`)
+        message.reply(`<@${rUser.id}>, Reported Successfully!!`)
         reportschannel.send(reportEmbed);
     };
 });
+
 client.login(process.env.BOT_TOKEN);
