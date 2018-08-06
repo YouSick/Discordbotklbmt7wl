@@ -233,9 +233,10 @@ client.on('message', message =>{
         reportschannel.send(reportEmbed);
     };
 });
+
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const prefix = 'H.';
 ///by-hosam(galaxy-bot-dev)🚫
 client.on('message', message => {
     if (message.content.startsWith(prefix + "c.role")) {
