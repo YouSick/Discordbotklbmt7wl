@@ -60,31 +60,44 @@ client.user.setGame(`Officer Mukhld`,"http://twitch.tv/S-F")
 
 
 client.on('message', message => {
-var prefix = ".";
+  if(!message.channel.guild) return;
+if(message.content.startsWith('$bc')) {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+let copy = "Dragon";
+let request = `Requested By ${message.author.username}`;
+if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+msg.react('✅')
+.then(() => msg.react('❌'))
+.then(() =>msg.react('✅'))
 
-    if (message.author.id === client.user.id) return;
-    if (message.guild) {
-   let embed = new Discord.RichEmbed()
-    let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc') {
-    if (!args[1]) {
-message.channel.send("**.bc <message>**");
-return;
+let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+reaction1.on("collect", r => {
+message.channel.send(`☑ | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.size} Members`).then(m => m.delete(5000));
+message.guild.members.forEach(m => {
+var bc = new
+Discord.RichEmbed()
+.setColor('RANDOM')
+.setTitle('Broadcast')
+.addField('Server', message.guild.name)
+.addField('Sender', message.author.username)
+.addField('Message', args)
+.setThumbnail(message.author.avatarURL)
+.setFooter(copy, client.user.avatarURL);
+m.send({ embed: bc })
+msg.delete();
+})
+})
+reaction2.on("collect", r => {
+message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
+msg.delete();
+})
+})
 }
-        message.guild.members.forEach(m => {
-   if(!message.member.hasPermission('ADMINISTRATOR')) return;
-            var bc = new Discord.RichEmbed()
-            .addField('» السيرفر :', `${message.guild.name}`)
-            .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
-            .addField(' » الرسالة : ', args)
-            .setColor('#ff0000')
-            // m.send(`[${m}]`);
-            m.send(`${m}`,{embed: bc});
-        });
-    }
-    } else {
-        return;
-    }
 });
 
 
@@ -198,6 +211,7 @@ client.on('message', message => {
          
     }
 });
+
 client.on('message', message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
@@ -323,5 +337,17 @@ client.on('message', message => {
     }
 });
 
+  client.on('message', message => {
+  if(message.content == "<@" + `${client.user.id}` + ">"){
+    var embed = new Discord.RichEmbed() 
+    .setAuthor(message.author.username)
+    .setThumbnail(message.author.avatarURL)
+    .setFooter(`Requested By | ${message.author.username}`)
+    .setColor("RANDOM")
+    .addField(`${prefix}help`, "**to show The Help List**")
+    message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
+    message.author.send({embed})
+  } 
+});
 
 client.login(process.env.BOT_TOKEN);
