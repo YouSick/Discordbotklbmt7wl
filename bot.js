@@ -47,7 +47,7 @@ client.user.setGame(`Officer Mukhld`,"http://twitch.tv/S-F")
         color: 0x06DF00,
         description: "تم مسح الرسائل ",
         footer: {
-          text: "©Ghost"
+          text: "©Funny :)"
         }
       }}).then(msg => {msg.delete(10000)});
                           }   
@@ -235,5 +235,24 @@ client.on('message', message =>{
 });
 
 
+client.on('message' , najzx => {
+    var prefix = ".";
+    let user = najzx.mentions.users.first()|| client.users.get(najzx.content.split(' ')[1])
+    if(najzx.content.startsWith(prefix + 'unban')) {
+        if(!najzx.member.hasPermission('ADMINISTRATOR')) return najzx.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
+        if(!user) return  najzx.channel.send(`Do this ${prefix} <@ID user> \n or \n ${prefix}unban ID user`);
+        najzx.guild.unban(user);
+        najzx.guild.owner.send(`لقد تم فك الباند عن الشخص \n ${user} \n By : <@${najzx.author.id}>`)
+        var embed = new Discord.RichEmbed()
+        .setThumbnail(najzx.author.avatarURl)
+        .setColor("RANDOM")
+        .setTitle('**Unban** !')
+        .addField('**User Unban :** ', `${user}` , true)
+        .addField('**By :**' ,       ` <@${najzx.author.id}> ` , true)
+        .setAuthor(najzx.guild.name)
+       .setFooter('Requested by '+najzx.author.username, najzx.author.avatarURL)
+        najzx.channel.sendEmbed(embed)
+    }
+  });
 
 client.login(process.env.BOT_TOKEN);
