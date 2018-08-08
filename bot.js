@@ -68,7 +68,7 @@ client.on('message', message => {
 
 
 
-lient.on('message', message => {
+client.on('message', message => {
   if (message.guild) {
  let embed = new Discord.RichEmbed()
   let args = message.content.split(' ').slice(1).join(' ');
