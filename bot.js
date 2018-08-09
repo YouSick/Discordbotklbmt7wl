@@ -341,6 +341,8 @@ client.on('message', message => {
     message.author.send({embed})
   } 
 });
+
+
 if(message.content.startsWith(prefix + 'bot')) {
         const embed = new Discord.RichEmbed()
             .setColor("#00FFFF")
@@ -352,22 +354,5 @@ if(message.content.startsWith(prefix + 'bot')) {
 
 });
 
-client.on("message", function(message) {
-
-  const bannedwords = [
-    "ks",
-    "kos",
-    "omk",
-    "amk",
-    "shrmo6h",
-    "bnek amk"
-    "
-  ];
-
-  if(bannedwords.some(word => message.content.includes(word))) {
-    message.delete()
-    message.reply("**Dont Swearing!**");
-  };
-});
 
 client.login(process.env.BOT_TOKEN);
