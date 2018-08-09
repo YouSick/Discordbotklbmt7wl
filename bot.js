@@ -325,23 +325,6 @@ client.on('message', message => {
     }
 });
 
-  client.on('message', message => {
-  if (message.content === ".help") {
-    var embed = new Discord.RichEmbed() 
-    .setAuthor(message.author.username)
-    .setThumbnail(message.author.avatarURL)
-    .setFooter(`Requested By | ${message.author.username}`)
-    .setColor("RANDOM")
-    .addField(`╔[══════__General commands__══════]╗`)
-    .addField(`${prefix}help`, "**to show The Help List**")
-    .addField(`${prefix}ping , "**Show Bot Ping**")
-    .addField(`${prefix}avatar , "**Show Your Avatar**")
-
-    message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
-    message.author.send({embed})
-  } 
-});
-
 
 if(message.content.startsWith(prefix + 'bot')) {
         const embed = new Discord.RichEmbed()
