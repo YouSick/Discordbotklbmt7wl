@@ -347,7 +347,7 @@ client.on('message', message => {
     .addField(`╔[══════__General commands__══════]╗`)
     .addField(`${prefix}help`, "**to show The Help List**")
     .addField(`${prefix}ping , "**Show Bot Ping**")
-    .addField(`${prefix}avatar , **Show Your Avatar
+    .addField(`${prefix}avatar , "**Show Your Avatar**")
 
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
