@@ -407,7 +407,7 @@ if (message.content.startsWith(prefix + 'help')) {
     let pages = ['الصفحه الاولي','الصفحه الثانيه','الصفحه الثالثه']
     let page = 1;
 
-     embed = new Discord.RichEmbed()
+    let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setFooter(`Page ${page} of ${pages.length}`)
     .setDescription(pages[page-1])
@@ -422,7 +422,7 @@ if (message.content.startsWith(prefix + 'help')) {
         const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
 
 
-         backwards = msg.createReactionCollector(backwardsFilter, { time: 20000});
+        const backwards = msg.createReactionCollector(backwardsFilter, { time: 20000});
         const forwards = msg.createReactionCollector(forwardsFilter, { time: 20000});
 
 
@@ -435,7 +435,7 @@ if (message.content.startsWith(prefix + 'help')) {
             msg.edit(embed)
         })
         forwards.on('collect', r => {
-            (page === pages.length) return;
+            if (page === pages.length) return;
             page++;
             embed.setDescription(pages[page-1]);
             embed.setFooter(`Page ${page} of ${pages.length}`);
@@ -445,6 +445,5 @@ if (message.content.startsWith(prefix + 'help')) {
     })
     }
 });
-
 
 client.login(process.env.BOT_TOKEN);
