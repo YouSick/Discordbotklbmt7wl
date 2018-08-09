@@ -172,7 +172,7 @@ if (message.content.startsWith(".ban")) {
 
     mention.ban("By: " + message.author.tag);
     
-    message.channel.send("mention.tag" + "was flying from the server :airplane: :heart);
+    message.channel.send("was flying from the server" + mention_tag);
 };
 });
 
