@@ -336,7 +336,7 @@ msg.channel.send(`Im Fuuny Bot :) to view the commands write .help And the bot w
 });
   
 client.on('message', message => {
-  if(message.content == "<@" + `${client.user.id}` + ">"){
+  if(message.content == ".help"){
     var embed = new Discord.RichEmbed() 
     .setAuthor(message.author.username)
     .setThumbnail(message.author.avatarURL)
