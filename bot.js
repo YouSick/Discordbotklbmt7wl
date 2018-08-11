@@ -193,7 +193,7 @@ if (message.content.startsWith(".kick")) {
 client.on('message', message => {
 if(message.content.startsWith(prefix + "invite")) { 
 message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
-message.channel.send("✅|Done|Check Your Direct Message")
+message.channel.send("✅ | Done | Check Your DirectMessages <@${message.author.id}>")
 }
 });
 
@@ -322,16 +322,6 @@ client.on('message', message => {
         message.channel.sendEmbed(embed)
     }
 });
-
-  client.on('message', msg => {
-    if(msg.content.startsWith('.infobot')) {
-    if(msg.channel.type === 'dm') return;
-const user = msg.mentions.users.first();
-if(!user) return msg.channel.send('``' + '**قم بتحديد بوت**' + '``')
-if(!user.bot) return msg.reply('\`منشن بوت\`');
-msg.channel.send(`Im Fuuny Bot :) to view the commands write .help And the bot will send you commands in Direct message Developer By Ch2i#0515`)
-    }
-});
   
 client.on('message', message => {
   if(message.content == ".help"){
@@ -346,6 +336,12 @@ client.on('message', message => {
     .addField(`${prefix}cchannel`, "**Close The Chat**")
     .addField(`${prefix}ochannel`, "**Open The Chat**")
     .addField(`${prefix}online`, "**Show Member Status List**")
+    .addField(`${prefix}hchannel`, "**Hide The Channel**")
+    .addField(`${prefix}schannel`, "**SHow The Channel**")
+    .addField(`${prefix}report`, "**Report Someone**")
+    .addField(`${prefix}sug`, "**Suggentions Help Your Server**")
+    .addField(`${prefix}kick`, "**kick Someone**")
+    .addField(`${prefix}ban`, "**Ban Someone**")
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
   } 
