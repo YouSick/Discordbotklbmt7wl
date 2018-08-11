@@ -335,5 +335,22 @@ msg.channel.send(`Im Fuuny Bot :) to view the commands write .help And the bot w
     }
 });
   
+client.on('message', message => {
+  if(message.content == "<@" + `${client.user.id}` + ">"){
+    var embed = new Discord.RichEmbed() 
+    .setAuthor(message.author.username)
+    .setThumbnail(message.author.avatarURL)
+    .setFooter(`Requested By | ${message.author.username}`)
+    .setColor("RANDOM")
+    .addField(`${prefix}help`, "**Show This List**")
+    .addField(`${prefix}clear`, "**Clear the Chat**")
+    .addField(`${prefix}server`, "**Show Informision The Server**")
+    .addField(`${prefix}cchannel`, "**Close The Chat**")
+    .addField(`${prefix}ochannel`, "**Open The Chat**")
+    .addField(`${prefix}online`, "**Show Member Status List**")
+    message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
+    message.author.send({embed})
+  } 
+});
 
 client.login(process.env.BOT_TOKEN);
