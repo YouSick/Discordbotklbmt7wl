@@ -172,7 +172,7 @@ if (message.content.startsWith(".kick")) {
 
 client.on('message', message => {
 if(message.content.startsWith(prefix + "invite")) { 
-message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
+message.author.send(`This Is Invite Link: https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
 message.reply("✅ | Done | Check Your DirectMessages")
 }
 });
