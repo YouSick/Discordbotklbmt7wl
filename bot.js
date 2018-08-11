@@ -173,7 +173,7 @@ if (message.content.startsWith(".kick")) {
 client.on('message', message => {
 if(message.content.startsWith(prefix + "invite")) { 
 message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
-message.channel.send("✅ | Done | Check Your DirectMessages <@${message.author.id}>")
+message.reply("✅ | Done | Check Your DirectMessages")
 }
 });
 
@@ -325,6 +325,13 @@ client.on('message', message => {
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
   } 
+});
+
+ client.on('message', message => {
+        var  user = message.mentions.users.first() || message.author;
+    if (message.content.startsWith("$avatar")) {
+message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
+}
 });
 
 client.login(process.env.BOT_TOKEN);
