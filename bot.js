@@ -190,15 +190,12 @@ if (message.content.startsWith(".kick")) {
 };
 });
 
-
 client.on('message', message => {
-    if (message.content.startsWith(".invites")) {
-
-    message.guild.fetchInvites()
-    .then(invites => message.channel.send(`**:busts_in_silhouette:  اتيت ب     [${invites.find(invite => invite.inviter.id === message.author.id)}]    :calling:   عضو لهذا السيرفر    `))
-         
-    }
+if(message.content.startsWith(prefix + "invite")) { 
+message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2080374975`);
+}
 });
+
 
 client.on('message', message =>{
     let messageArray = message.content.split(" ");
