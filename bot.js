@@ -40,7 +40,7 @@ client.user.setGame(`Officer Mukhld`,"http://twitch.tv/S-F")
  
             var args = message.content.substring(prefix.length).split(" ");
             if (message.content.startsWith(prefix + "clear")) {
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('? | **لا يوجد لديك صلاحية لمسح الشات**');
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Dont Have Permission ``Manage_Messages``');
         var msg;
         msg = parseInt();
       
@@ -62,8 +62,8 @@ client.user.setGame(`Officer Mukhld`,"http://twitch.tv/S-F")
 client.on('message', message => {
   if(!message.channel.guild) return;
 if(message.content.startsWith('.bc')) {
-if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+if(!message.channel.guild) return message.channel.send('**This Commands For Server** <3').then(m => m.delete(5000));
+if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('You Dont Have Permission `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
 let copy = "Dragon";
 let request = `Requested By ${message.author.username}`;
@@ -117,24 +117,24 @@ client.on('message', message => {
     if (message.content === ".cchannel") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Dont Have Permission ``Manage_Message``');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
 
            }).then(() => {
-               message.reply("تم تقفيل الشات :white_check_mark: ")
+               message.reply("Closed Chat :white_check_mark: ")
            });
              }
 //YouSick_#1533
 if (message.content === ".ochannel") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You Dont Have Permission``Manage_Message``');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: true
 
            }).then(() => {
-               message.reply("تم فتح الشات:white_check_mark:")
+               message.reply("Open Chat:white_check_mark:")
            });
              }
 
@@ -148,11 +148,11 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
 client.on('message', message => {
 if (message.content.startsWith(".ban")) {
     var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send("يجب منشن العضو");
+    if(!mention) return message.channel.send("Mention him");
 
     mention.ban("By: " + message.author.tag);
     
-    message.channel.send("was flying from the server" + mention_tag);
+    message.channel.send("was banned from the server" + mention_tag);
 };
 });
 
@@ -162,11 +162,11 @@ if (message.content.startsWith(".ban")) {
 client.on('message', message => {
 if (message.content.startsWith(".kick")) {
     var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send("يجب منشن العضو");
+    if(!mention) return message.channel.send("Mention him");
 
     mention.kick("By: " + message.author.tag);
     
-    message.channel.send("تم أعطاء كيك الى : " + mention.tag);
+    message.channel.send("was kick from the server" + mention.tag);
 };
 });
 
@@ -216,7 +216,7 @@ client.on('message', message =>{
     let args = messageArray.slice(1);
     let prefix = '.';
 
-if(cmd === `${prefix}suggest`) {
+if(cmd === `${prefix}sug`) {
     var suggestMessage = message.content.substring(7)
     let suggestEMBED = new Discord.RichEmbed()
     .setColor(3447003)
@@ -242,6 +242,7 @@ client.on('message', message => {
   if (message.content.startsWith(prefix + "vmute")) {
     if (!message.member.hasPermission('MUTE_MEMBERS')) return;
   { message.member.setMute(true);
+   
     }
   }
     });
@@ -283,7 +284,7 @@ client.on('message', message => {
 
      if (message.author.bot) return;
     if (!message.channel.guild) return;
-    if (message.content.startsWith(prefix + 'online')) {
+    if (message.content.startsWith(prefix + 'members')) {
         if (!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
             .setColor('RANDOM')
@@ -315,7 +316,7 @@ client.on('message', message => {
     .addField(`${prefix}server`, "**Show Informision The Server**")
     .addField(`${prefix}cchannel`, "**Close The Chat**")
     .addField(`${prefix}ochannel`, "**Open The Chat**")
-    .addField(`${prefix}online`, "**Show Member Status List**")
+    .addField(`${prefix}members`, "**Show Member Status List**")
     .addField(`${prefix}hchannel`, "**Hide The Channel**")
     .addField(`${prefix}schannel`, "**SHow The Channel**")
     .addField(`${prefix}report`, "**Report Someone**")
@@ -329,7 +330,7 @@ client.on('message', message => {
 
  client.on('message', message => {
         var  user = message.mentions.users.first() || message.author;
-    if (message.content.startsWith("$avatar")) {
+    if (message.content.startsWith(".avatar")) {
 message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
