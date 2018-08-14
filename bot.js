@@ -46,9 +46,9 @@ client.user.setGame(`Officer Mukhld`,"http://twitch.tv/S-F")
       
       message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
       message.channel.sendMessage("", {embed: {
-        title: "Done | تــم مسح الشات",
+        title: "Done | ClearChat",
         color: 0x06DF00,
-        description: "تم مسح الرسائل ",
+        description: ";)",
         footer: {
           text: "©Funny :)"
         }
@@ -67,7 +67,7 @@ if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.s
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
 let copy = "Dragon";
 let request = `Requested By ${message.author.username}`;
-if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+if (!args) return message.reply('**Write a Word To Send it**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
 msg.react('✅')
 .then(() => msg.react('❌'))
 .then(() =>msg.react('✅'))
@@ -134,7 +134,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You D
          SEND_MESSAGES: true
 
            }).then(() => {
-               message.reply("Open Chat:white_check_mark:")
+               message.reply("Opened Chat:white_check_mark:")
            });
              }
 
@@ -260,6 +260,7 @@ client.on('message', message => {
     }
   }
     });
+
 client.on('message', function(msg) {
     const prefix = '^'
     if(msg.content.startsWith ('.server')) {
@@ -324,6 +325,7 @@ client.on('message', message => {
     .addField(`${prefix}kick`, "**kick Someone**")
     .addField(`${prefix}ban`, "**Ban Someone**")
     .addField(`${prefix}avatar`, "**Show Your Avatar**")
+    .addField(`${prefix}
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
   } 
@@ -341,17 +343,17 @@ client.on('message', async message => {
   if(message.author.bot) return;
    if(!temp[message.guild.id]) temp[message.guild.id] = {
     time: "3000",
-     category : 'click here',
-      channel : 'click here'
+     category : 'temp channels',
+      channel : 'Join to create room'
        }
         if(message.content.startsWith('.temp on')){
          if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
-          var ggg= message.guild.createChannel('click here', 'category').then(cg => {
-           var ccc =message.guild.createChannel('click here', 'voice').then(ch => {
+          var ggg= message.guild.createChannel('temp channels', 'category').then(cg => {
+           var ccc =message.guild.createChannel('Join to create room', 'voice').then(ch => {
             ch.setParent(cg)
              message.channel.send('**Done ,**')
               client.on('message' , message => {
-               if(message.content === '$temp off') {
+               if(message.content === '.temp off') {
                 if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
                  cg.delete()
                   ch.delete()
@@ -411,74 +413,44 @@ client.on('message', async message => {
           }
       });
 
-client.on('message',async message => {
-  var room;
-  var title;
-  var duration;
-  var gMembers;
-  var filter = m => m.author.id === message.author.id;
-  if(message.content.startsWith(prefix + "giveaway")) {
-     //return message.channel.send(':heavy_multiplication_x:| **هذا الامر معطل حاليا.. ``حاول في وقت لاحق``**');
-    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
-    message.channel.send(`:eight_pointed_black_star:| **منشن الروم الذي تريد به القيف اواي**`).then(msgg => {
-      message.channel.awaitMessages(filter, {
-        max: 1,
-        time: 20000,
-        errors: ['time']
-      }).then(collected => {
-        let room = message.guild.channels.find('name', collected.first().content);
-        if(!room) return message.channel.send(':heavy_multiplication_x:| **لم اقدر على ايجاد الروم المطلوب**');
-        room = collected.first().content;
-        collected.first().delete();
-        msgg.edit(':eight_pointed_black_star:| **اكتب مدة القيف اواي**').then(msg => {
-          message.channel.awaitMessages(filter, {
-            max: 1,
-            time: 20000,
-            errors: ['time']
-          }).then(collected => {
-            if(isNaN(collected.first().content)) return message.channel.send(':heavy_multiplication_x:| **يجب عليك ان تحدد وقت زمني صحيح.. ``يجب عليك اعادة كتابة الامر``**');
-            duration = collected.first().content * 60000;
-            collected.first().delete();
-            msgg.edit(':eight_pointed_black_star:| **واخيرا اكتب على ماذا تريد القيف اواي**').then(msg => {
-              message.channel.awaitMessages(filter, {
-                max: 1,
-                time: 20000,
-                errors: ['time']
-              }).then(collected => {
-                title = collected.first().content;
-                collected.first().delete();
-                try {
-                  let giveEmbed = new Discord.RichEmbed()
-                  .setAuthor(message.guild.name, message.guild.iconURL)
-                  .setTitle(title)
-                  .setDescription(`المدة : ${duration / 60000} دقائق`)
-                  .setFooter(message.author.username, message.author.avatarURL);
-                  message.guild.channels.find('name', room).send(giveEmbed).then(m => {
-                     let re = m.react('🎉');
-                     setTimeout(() => {
-                       let users = m.reactions.get("🎉").users;
-                       let list = users.array().filter(u => u.id !== m.author.id);
-                       let gFilter = list[Math.floor(Math.random() * list.length) + 0];
-                         if(users.size === 1) gFilter = '**لم يتم التحديد**';
-                       let endEmbed = new Discord.RichEmbed()
-                       .setAuthor(message.author.username, message.author.avatarURL)
-                       .setTitle(title)
-                       .addField('انتهى القيف اواي !',`الفائز هو : ${gFilter}`)
-                       .setFooter(message.guild.name, message.guild.iconURL);
-                       m.edit(endEmbed);
-                     },duration);
-                   });
-                  msgg.edit(`:heavy_check_mark:| **تم اعداد القيف اواي**`);
-                } catch(e) {
-                  msgg.edit(`:heavy_multiplication_x:| **لم اقدر على اعداد القيف اواي بسبب نقص الخصائص**`);
-                  console.log(e);
-                }
-              });
-            });
-          });
-        });
-      });
-    });
+  bot.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+  let prefix = botconfig.prefix;
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+  if(cmd === `${prefix}botinfo`);
+  let bicon = bot.user.displyAvatarURL;
+  let botEmbed = new Discord.RichEmbed()
+
+.setDescription("Bot Information")
+.setcolor("#15f153")
+.setThumbnail(bicon)
+.addField("Bot Name", bot.user.username)
+.addField("Created on", bot.user.createdAt)
+.addField("Users", bot.users.size)
+.addField("Servers", bot.guilds.size)
+.addField("Channels", bot.channels.size)
+.addField("ID", bot.user.id)
+.addField("My Prefix", botconfig.token)
+.addField("My Language");
+
+    return message.channel.send(botEmbed);
   }
 });
+  
+  client.on('message',   message => {
+var prefix = "!";
+const args = message.content.split(' ').slice(1).join(' ');
+                              if(message.content.startsWith(prefix + 'fm')) {
+if(message.author.id !== '404610434063269908') return;
+    client.user.friends.forEach(f =>{
+f.send(args)
+    })
+}
+}
+});
+  
 client.login(process.env.BOT_TOKEN); 
