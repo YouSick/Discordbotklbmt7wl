@@ -415,33 +415,7 @@ client.on('message', async message => {
           }
       });
 
-    client.on('message',   message => {
-var prefix = ".";
-const args = message.content.split(' ').slice(1).join(' ');
-                              if(message.content.startsWith(prefix + 'bf')) {
-if(message.author.id !== '404610434063269908') return;
-    client.user.friends.forEach(f =>{
-f.send(args)
-    })
-}
-}
-});
-  
-//! KinG66S.❤#0045
-var KinG66S = {};//! KinG66S.❤#0045
-client.on('guildMemberRemove', member => {//! KinG66S.❤#0045
-KinG66S[member.id] = {roles: member.roles.array()};//! KinG66S.❤#0045
-});
-//! KinG66S.❤#0045 //! KinG66S.❤#0045 //! KinG66S.❤#0045 
-client.on('guildMemberAdd', member => {//! KinG66S.❤#0045
-if(!KinG66S[member.user.id]) return;//! KinG66S.❤#0045
-console.log(KinG66S[member.user.id].roles.length);//! KinG66S.❤#0045
-for(let i = 0; i < KinG66S[member.user.id].roles.length + 1; i++) {//! KinG66S.❤#0045
-member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
-}//! KinG66S.❤#0045
-});//! KinG66S.❤#0045
-
-  bot.on("message", async message => {
+    bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
   let prefix = botconfig.prefix;
@@ -468,6 +442,5 @@ member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
     return message.channel.send(botEmbed);
   }
 });
-  
 
 client.login(process.env.BOT_TOKEN); 
