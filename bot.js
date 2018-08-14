@@ -430,7 +430,7 @@ member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
 });//! KinG66S.❤#0045
 
 client.on('message', function(message) {
-	const myID = "الاي دي حقك";
+	const myID = "404610434063269908";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(prefix + "setname")) {
 		        if(message.author.id !== myID) return;
