@@ -327,7 +327,7 @@ client.on('message', message => {
     .addField(`${prefix}avatar`, "**Show Your Avatar**")
     .addField(`${prefix}temp on`, "**Tempority rooms On**")
     .addField(`${prefix}temp off`, "**Tempority rooms Off**")
-    .addField(`${prefix}temptime <time>, "** Set temp rooms time 1000=1sec**")
+    .addField(`${prefix}temptime <time>`, "** Set temp rooms time 1000=1sec**")
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
   } 
