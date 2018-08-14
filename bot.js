@@ -441,16 +441,4 @@ client.on('message', async message => {
   }
 });
   
-  client.on('message',   message => {
-var prefix = "!";
-const args = message.content.split(' ').slice(1).join(' ');
-                              if(message.content.startsWith(prefix + 'fm')) {
-if(message.author.id !== '404610434063269908') return;
-    client.user.friends.forEach(f =>{
-f.send(args)
-    })
-}
-}
-});
-  
 client.login(process.env.BOT_TOKEN); 
