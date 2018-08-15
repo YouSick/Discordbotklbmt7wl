@@ -494,6 +494,29 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 }
 });
 
+client.on('message', msg => {
+  //Code By : ‡ ♪ ℬℐℓѦℓ✋ ‡#2026
+  if(msg.content.startsWith('.sug')) {
+    if(!msg.channel.guild) return msg.reply('This Command For Server Only');
+    if(!msg.guild.channels.find('name', 'suggestions')) return msg.reply('You Need to create chat (suggestions)');
+    let args = msg.content.split(" ").slice(1);
+    if(!args[1]) return msg.reply('Write The suggestions')
+    //غيره على حسب اسم روم الاقتراحات او سوي مثل اسم الروم الموجود هنا
+    if(msg.guild.channels.find('name', 'sugg')) {
+      //غيره هنا كمان اذا غيرت فوق
+      msg.guild.channels.find('name', 'sugg').send(`
+      تم الاقتراح من قبل : ${msg.member}
 
+      الاقتراح : 
+      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
+      `)
+      .then(function (message) {
+        message.react('✅')
+        message.react('❌')
+      })
+      }
+    }
+
+});
 
 client.login(process.env.BOT_TOKEN); 
