@@ -474,7 +474,7 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 }
 });
 
-lient.on('message', msg => {
+client.on('message', msg => {
   //Code By : YouSick_#9909
   if(msg.content.startsWith('.vote')) {
     if(!msg.channel.guild) return msg.reply('**This Command For Server Only**');
