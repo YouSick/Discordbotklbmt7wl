@@ -458,29 +458,6 @@ member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
       });
   }, 1000);
 });
-client.on('voiceStateUpdate', (o, n) => {
-        let newUserChannel = n.voiceChannel
-    let oldUserChannel = o.voiceChannel
-
-    var channel = client.channels.get("478983569730043918");
-        let cha = n.guild.channels.get("478983569730043920");
-        
-          let mute1 = o.serverMute;
-  let mute2 = n.serverMute;
-  
-
-  let deafen1 = o.serverDeaf;
-  let deafen2 = n.serverDeaf;
-
-    if(mute1 === false && mute2 === true) return;
-    if(mute1 === true && mute2 === false) return;
-    if(deafen1 === false && deafen2 === true) return;
-    if(deafen1 === true && deafen2 === false) return;
-    
-
-    channel.send(`Join Room ${n.displayName}`)
-
-})
 
 const developers = ["404610434063269908"]
 const adminprefix = "^";
@@ -518,42 +495,5 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 });
 
 
- client.on('message', function(message) {
-    if(message.content.startsWith(prefix + "report")) {
-        let messageArgs = message.content.split(" ").slice(1).join(" ");
-        let messageReason = message.content.split(" ").slice(2).join(" ");
-        if(!messageReason) return message.reply("**# Specify a reason!**");
-    let mUser = message.mentions.users.first();
-    if(!mUser) return message.channel.send("Couldn't find user.");
-    let Rembed = new Discord.RichEmbed()
-    .setTitle("`New Report!`")
-    .setThumbnail(message.author.avatarURL)
-    .addField("**# - Reported User:**",mUser,true)
-    .addField("**# - Reported User ID:**",mUser.id,true)
-    .addField("**# - Reason:**",messageReason,true)
-    .addField("**# - Channel:**",message.channel,true)
-    .addField("**# - Time:**",message.createdAt,true)
-    .setFooter("لو ان الابلاغ فيه مزح راح يتعرض صاحب الابلاغ لقوبات")
-message.channel.send(Rembed)
-message.channel.send("__Are you sure you want to send this to the Server owner??__").then(msg => {
-    msg.react("✅")
-    msg.react("❌")
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-    message.guild.owner.send(Rembed)
-    message.reply("**# - Done! 🎇**");
-})
-reaction2.on("collect", r => {
-    message.reply("**# - Canceled!**");
-})
-})
-}
-});
 
 client.login(process.env.BOT_TOKEN); 
