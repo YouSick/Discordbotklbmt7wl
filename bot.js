@@ -211,7 +211,6 @@ client.on('message', message =>{
 
 
 
-});
 client.on('message', message => {
   if (message.content.startsWith(prefix + "deafen")) {
     if (!message.member.hasPermission('DEAFEN_MEMBERS')) return;
