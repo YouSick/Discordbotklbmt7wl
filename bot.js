@@ -485,8 +485,10 @@ client.on('message', msg => {
     if(msg.guild.channels.find('name', 'vote')) {
       //غيره هنا كمان اذا غيرت فوق
       msg.guild.channels.find('name', 'vote').send(`
-      Vote by : ${msg.member}
+     Vote create by : ${msg.member}
+   ================================================================
     ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
+   ================================================================
       `)
       .then(function (message) {
         message.react('✅')
