@@ -476,7 +476,7 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 
 client.on('message', msg => {
   //Code By : ‡ ♪ ℬℐℓѦℓ✋ ‡#2026
-  if(msg.content.startsWith('.sug')) {
+  if(msg.content.startsWith('.vote')) {
     if(!msg.channel.guild) return msg.reply('This Command For Server Only');
     if(!msg.guild.channels.find('name', 'vote')) return msg.reply('You Need to create chat (suggestions)');
     let args = msg.content.split(" ").slice(1);
