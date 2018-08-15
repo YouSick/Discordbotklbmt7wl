@@ -486,9 +486,7 @@ lient.on('message', msg => {
       //غيره هنا كمان اذا غيرت فوق
       msg.guild.channels.find('name', 'vote').send(`
       vote by : ${msg.member}
-``
-      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
-``
+     ``${args.join(" ").split``(msg.mentions.members.first()).slice(' ')}
       `)
       .then(function (message) {
         message.react('✅')
