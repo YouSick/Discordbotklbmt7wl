@@ -478,17 +478,18 @@ client.on('message', msg => {
   //Code By : ‡ ♪ ℬℐℓѦℓ✋ ‡#2026
   if(msg.content.startsWith('.vote')) {
     if(!msg.channel.guild) return msg.reply('This Command For Server Only');
-    if(!msg.guild.channels.find('name', 'vote')) return msg.reply('You Need to create chat (suggestions)');
+    if(!msg.guild.channels.find('name', 'vote')) return msg.reply('You Need to create chat (vote)');
     let args = msg.content.split(" ").slice(1);
     if(!args[1]) return msg.reply('.vote [text]')
     //غيره على حسب اسم روم الاقتراحات او سوي مثل اسم الروم الموجود هنا
     if(msg.guild.channels.find('name', 'vote')) {
       //غيره هنا كمان اذا غيرت فوق
       msg.guild.channels.find('name', 'vote').send(`
-      تم الاقتراح من قبل : ${msg.member}
-
-      Vote By : 
-      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
+      Vote create by: ${msg.member}
+     
+``
+      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}`
+``     
       `)
       .then(function (message) {
         message.react('✅')
