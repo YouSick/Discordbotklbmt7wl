@@ -210,25 +210,6 @@ client.on('message', message =>{
 });
 
 
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = '.';
-
-if(cmd === `${prefix}sug`) {
-    var suggestMessage = message.content.substring(7)
-    let suggestEMBED = new Discord.RichEmbed()
-    .setColor(3447003)
-    .setTitle("New suggest just added!!")
-    .setDescription(`**${suggestMessage}**`)
-    .setFooter(`Suggested By : ${message.author.tag}`);
-    message.delete().catch(O_o=>{}) 
-    let suggests = message.guild.channels.find(`name`, "suggests");
-    if (!suggests) return message.channel.send("You should make A **suggests** channel!")
-    suggests.send(suggestEMBED);
-}
-
 
 });
 client.on('message', message => {
@@ -498,16 +479,16 @@ client.on('message', msg => {
   //Code By : ‡ ♪ ℬℐℓѦℓ✋ ‡#2026
   if(msg.content.startsWith('.sug')) {
     if(!msg.channel.guild) return msg.reply('This Command For Server Only');
-    if(!msg.guild.channels.find('name', 'suggestions')) return msg.reply('You Need to create chat (suggestions)');
+    if(!msg.guild.channels.find('name', 'vote')) return msg.reply('You Need to create chat (suggestions)');
     let args = msg.content.split(" ").slice(1);
-    if(!args[1]) return msg.reply('Write The suggestions')
+    if(!args[1]) return msg.reply('.vote [text]')
     //غيره على حسب اسم روم الاقتراحات او سوي مثل اسم الروم الموجود هنا
-    if(msg.guild.channels.find('name', 'sugg')) {
+    if(msg.guild.channels.find('name', 'vote')) {
       //غيره هنا كمان اذا غيرت فوق
-      msg.guild.channels.find('name', 'sugg').send(`
+      msg.guild.channels.find('name', 'vote').send(`
       تم الاقتراح من قبل : ${msg.member}
 
-      الاقتراح : 
+      Vote By : 
       ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
       `)
       .then(function (message) {
