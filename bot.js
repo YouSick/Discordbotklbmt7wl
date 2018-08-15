@@ -474,22 +474,21 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 }
 });
 
-client.on('message', msg => {
-  //Code By : ‡ ♪ ℬℐℓѦℓ✋ ‡#2026
+lient.on('message', msg => {
+  //Code By : YouSick_#9909
   if(msg.content.startsWith('.vote')) {
-    if(!msg.channel.guild) return msg.reply('This Command For Server Only');
-    if(!msg.guild.channels.find('name', 'vote')) return msg.reply('You Need to create chat (vote)');
+    if(!msg.channel.guild) return msg.reply('**This Command For Server Only**');
+    if(!msg.guild.channels.find('name', 'vote')) return msg.reply('Create ``vote`` Chat');
     let args = msg.content.split(" ").slice(1);
-    if(!args[1]) return msg.reply('.vote [text]')
+    if(!args[1]) return msg.reply('.vote [text')
     //غيره على حسب اسم روم الاقتراحات او سوي مثل اسم الروم الموجود هنا
     if(msg.guild.channels.find('name', 'vote')) {
       //غيره هنا كمان اذا غيرت فوق
       msg.guild.channels.find('name', 'vote').send(`
-      Vote create by: ${msg.member}
-     
+      vote by : ${msg.member}
 ``
-      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}`
-``     
+      ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
+``
       `)
       .then(function (message) {
         message.react('✅')
