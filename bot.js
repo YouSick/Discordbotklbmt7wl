@@ -497,4 +497,29 @@ client.on('message', msg => {
 
 });
 
+
+client.on('message',async message => {
+  let args = message.content.split(" ").slice(1).join(" ");
+  let role = message.guild.roles.find('name',args) || message.guild.roles.get(args);
+
+
+  if(message.content.startsWith(prefix + "info-role")) {
+    if(!args) return message.reply('**Write name the role');
+    if(!role) return message.reply('Role Not Found!');
+    let iQp = new Discord.RichEmbed()
+    .setAuthor(message.author.tag,message.author.avatarURL)
+    .setTitle(message.guild.name)
+    .setThumbnail(message.guild.iconURL)
+    .addField('- Role Name',role.name,true)
+    .addField('- ID Role',role.id,true)
+    .addField('- Role Create At',role.createdAt.toLocaleString(),true)
+    .addField('- Color Role',role.hexColor,true)
+    .addField('- Count People Have This Role',role.members.size,true)
+    .addField('- Postions role',role.position,true)
+    .addField('- Role Permission',role.permissions,true)
+    .setFooter(message.author.tag,message.author.avatarURL);
+
+    message.channel.send(iQp);
+  }
+});
 client.login(process.env.BOT_TOKEN); 
