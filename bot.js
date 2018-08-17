@@ -497,4 +497,20 @@ client.on('message', msg => {
 
 });
 
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('__1__' ,'00100' ,'shrmo6h' ,'alshrmo6h' ,'klz8' ,'ksamk' ,'kl z8' ,'ksmk' ,'klz8' ,'kos omk')){
+        message.delete()
+    return message.reply(`**Dont Swearing**`)
+    }
+});
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('كسمك' ,'كل زق' ,'كلزق' ,'ابن الشرموطه' ,'الشراميط' ,'كس امك' ,'بنيكك')){
+        message.delete()
+    return message.reply(`**Dont Swearing**`)
+    }
+});
+
 client.login(process.env.BOT_TOKEN); 
