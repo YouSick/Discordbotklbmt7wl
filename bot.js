@@ -497,35 +497,4 @@ client.on('message', msg => {
 
 });
 
-client.on("message", function(message) {
-
-  const bannedwords = [
-    "كس امك",
-    "كس ابوك",
-    "كس",
-     "الشرموطه",
-    "الشراميط",
-    "كسمك"
-    "كلزق"
-    "كل زق"
-    "00100"
-    "__1__"
-    "ksmk"
-    "klz8
-    "alshrmo6h"
-    "shrmo6h"
-    "alshrmay6"
-    "kos omk"
-    "kosomk
-    "ksamk"
-    "kl z8"
-
-	  };
-
-  if(bannedwords.some(word => message.content.includes(word))) {
-    message.delete()
-    message.reply("**Dont Swearing");
-  };
-});
-
 client.login(process.env.BOT_TOKEN); 
