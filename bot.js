@@ -520,7 +520,7 @@ client.on("message", function(message) {
     "ksamk"
     "kl z8"
 
-  ];
+	  };
 
   if(bannedwords.some(word => message.content.includes(word))) {
     message.delete()
