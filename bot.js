@@ -518,7 +518,7 @@ client.on('message', msg => {
     let createdAt = moment(client.user.createdAt).fromNow();
 
 let m = await message.channel.send(`\`\`\`asciidoc\n= Normal Information =
-Creator :: ${client.users.get("323885452207587329").username} - ${createdAt}
+Creator :: ${client.users.get("404610434063269908").username} - ${createdAt}
 Ping :: ${client.pings[0]} ms
 UpTime :: ${upTime}
 
