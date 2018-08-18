@@ -497,7 +497,7 @@ client.on('message', msg => {
 
 });
 
-  hero.on('message',async message => {
+  client.on('message',async message => {
   function timeCon(time) {
   let days = Math.floor(time % 31536000 / 86400);
   let hours = Math.floor(time % 31536000 % 86400 / 3600);
@@ -515,17 +515,17 @@ client.on('message', msg => {
   if(message.content.startsWith(prefix + "bot")) {
     let ramUsage = (process.memoryUsage().rss / 1048576).toFixed();
     let upTime = timeCon(process.uptime());
-    let createdAt = moment(hero.user.createdAt).fromNow();
+    let createdAt = moment(client.user.createdAt).fromNow();
 
 let m = await message.channel.send(`\`\`\`asciidoc\n= Normal Information =
-Creator :: ${hero.users.get("323885452207587329").username} - ${createdAt}
-Ping :: ${hero.pings[0]} ms
+Creator :: ${client.users.get("323885452207587329").username} - ${createdAt}
+Ping :: ${client.pings[0]} ms
 UpTime :: ${upTime}
 
 = Servers Information =
-Servers :: ${hero.guilds.size}
-Users :: ${hero.users.size}
-Channels :: ${hero.channels.size}
+Servers :: ${client.guilds.size}
+Users :: ${client.users.size}
+Channels :: ${client.channels.size}
 
 = Developer Information =
 NodeJS :: ${process.version}
