@@ -441,7 +441,7 @@ member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
   }, 1000);
 });
 
-const developers = ["404610434063269908","411306953185296390"]
+const developers = ["404610434063269908","411306953185296390","343069080917377034"]
 const adminprefix = "^";
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
