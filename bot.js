@@ -63,7 +63,7 @@ client.on('message', message => {
   if(!message.channel.guild) return;
 if(message.content.startsWith('.bc')) {
 if(!message.channel.guild) return message.channel.send('**This Commands For Server** <3').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('You Dont Have Permission `ADMINISTRATOR`' );
+if(!message.member.hasPermission('MUTE_MEMBERS')) return      message.channel.send('You Dont Have Permission `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
 let copy = "Dragon";
 let request = `Requested By ${message.author.username}`;
