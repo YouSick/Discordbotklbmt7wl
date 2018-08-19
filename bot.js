@@ -569,7 +569,7 @@ let xFive = new Discord.RichEmbed()
     .setColor("BLUE")
     .setAuthor(message.author.username,message.author.avatarURL)
     .setThumbnail(message.author.avatarURL)
-    .setFooter("SenioR TeaM. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
+    .setFooter("Funny. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
     .addField("**•Message**","**"+anarg+"**")
     .addField("**•Send By**","<@"+message.author.id+">")
     .addField("**•Data**",Day+"/"+Month+"/"+Year+" | "+hours+":"+minutes+":"+seconds+" "+suffix)
@@ -605,10 +605,9 @@ let toSend = message.mentions.users.first();
           }
 let xFive = new Discord.RichEmbed()
     .setColor("BLUE")
-    .setAuthor(message.author.username,message.author.avatarURL)
-    .setThumbnail(message.author.avatarURL)
-    .setFooter("SenioR TeaM. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
+    .setFooter("SomeOne. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
     .addField("**•Message**","**"+anarg+"**")
+    .addField("**Send By**","**Ghost User**")
     .addField("**•Data**",Day+"/"+Month+"/"+Year+" | "+hours+":"+minutes+":"+seconds+" "+suffix)
 if(command === `${prefix}msg`) {
     if(toSend.bot) return message.reply("**# You cannot send a message to a bot!** 🎇");
