@@ -542,5 +542,79 @@ Rss :: ${Math.round(process.memoryUsage().rss / 1024 / 1024 * 100) / 100} MB
   }
 });
 
+client.on("message", function(message) {
+let messageArray = message.content.split(" ");
+let command = messageArray[0];
+let anarg = message.content.split(" ").slice(2);
+let toSend = message.mentions.users.first();
+        
+         var currentTime = new Date(),
+          hours = currentTime.getHours() + 2 ,
+          minutes = currentTime.getMinutes(),
+          seconds = currentTime.getSeconds(),
+          Year = currentTime.getFullYear() - 2000,
+          Month = currentTime.getMonth() + 1,
+          Day = currentTime.getDate();
+          var suffix = 'AM';
+          if (hours >= 12) {
+             suffix = 'PM';
+              hours = hours - 12;
+         }
+          if (hours == 0) {
+              hours = 12;
+          }
+let xFive = new Discord.RichEmbed()
+    .setColor("BLUE")
+    .setAuthor(message.author.username,message.author.avatarURL)
+    .setThumbnail(message.author.avatarURL)
+    .setFooter("SenioR TeaM. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
+    .addField("**•Message**","**"+anarg+"**")
+    .addField("**•Send By**","<@"+message.author.id+">")
+    .addField("**•Data**",Day+"/"+Month+"/"+Year+" | "+hours+":"+minutes+":"+seconds+" "+suffix)
+if(command === `${prefix}message`) {
+    if(toSend.bot) return message.reply("**# You cannot send a message to a bot!** 🎇");
+    if(anarg < 1) return message.reply("**# Please , Specify a valid arguments!** 🎇");
+    //if(toSend === message.author) return message.reply("**# You cannot send a message to yourself**");
+    toSend.send({embed:xFive});
+    message.reply("** ✅ , Sent a Message to **<@"+toSend.id+">")
+ }
+});
+
+client.on("message", function(message) {
+let messageArray = message.content.split(" ");
+let command = messageArray[0];
+let anarg = message.content.split(" ").slice(2);
+let toSend = message.mentions.users.first();
+        
+         var currentTime = new Date(),
+          hours = currentTime.getHours() + 2 ,
+          minutes = currentTime.getMinutes(),
+          seconds = currentTime.getSeconds(),
+          Year = currentTime.getFullYear() - 2000,
+          Month = currentTime.getMonth() + 1,
+          Day = currentTime.getDate();
+          var suffix = 'AM';
+          if (hours >= 12) {
+             suffix = 'PM';
+              hours = hours - 12;
+         }
+          if (hours == 0) {
+              hours = 12;
+          }
+let xFive = new Discord.RichEmbed()
+    .setColor("BLUE")
+    .setAuthor(message.author.username,message.author.avatarURL)
+    .setThumbnail(message.author.avatarURL)
+    .setFooter("SenioR TeaM. || "+"- "+Month+"."+Year+"."+Day+" -"+hours+":"+minutes+" "+suffix)
+    .addField("**•Message**","**"+anarg+"**")
+    .addField("**•Data**",Day+"/"+Month+"/"+Year+" | "+hours+":"+minutes+":"+seconds+" "+suffix)
+if(command === `${prefix}msg`) {
+    if(toSend.bot) return message.reply("**# You cannot send a message to a bot!** 🎇");
+    if(anarg < 1) return message.reply("**# Please , Specify a valid arguments!** 🎇");
+    //if(toSend === message.author) return message.reply("**# You cannot send a message to yourself**");
+    toSend.send({embed:xFive});
+    message.reply("** ✅ , Sent a Message to **<@"+toSend.id+">")
+ }
+});
 
 client.login(process.env.BOT_TOKEN); 
