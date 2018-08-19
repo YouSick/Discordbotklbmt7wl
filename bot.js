@@ -619,4 +619,29 @@ if(command === `${prefix}msg`) {
  }
 });
 
+ client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+  if(cmd === `${prefix}botinfo`);
+  let bicon = bot.user.displyAvatarURL;
+  let botEmbed = new Discord.RichEmbed()
+
+.setDescription("Bot Information")
+.setcolor("#15f153")
+.setThumbnail(bicon)
+.addField("Bot Name", bot.user.username)
+.addField("Created on", bot.user.createdAt)
+.addField("Users", client.users.size)
+.addField("Servers", client.guilds.size)
+.addField("Channels", client.channels.size)
+.addField("ID", client.user.id)
+
+    return message.channel.send(botEmbed);
+  }
+});
+
 client.login(process.env.BOT_TOKEN); 
