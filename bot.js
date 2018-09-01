@@ -209,40 +209,8 @@ client.on('message', message =>{
     };
 });
 
-
-
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "deafen")) {
-    if (!message.member.hasPermission('DEAFEN_MEMBERS')) return;
-  { message.member.setDeaf(true);
-    }
-  }
-    });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "vmute")) {
-    if (!message.member.hasPermission('MUTE_MEMBERS')) return;
-  { message.member.setMute(true);
-   
-    }
-  }
-    });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "undeafen")) {
-    if (!message.member.hasPermission('DEAFEN_MEMBERS')) return;
-  { message.member.setDeaf(false);
-    }
-  }
-    });
-client.on('message', message => {
-  if (message.content.startsWith(prefix + "vunmute")) {
-    if (!message.member.hasPermission('MUTE_MEMBERS')) return;
-  { message.member.setMute(false);
-    }
-  }
-    });
-
 client.on('message', function(msg) {
-    const prefix = '^'
+    const prefix = '.'
     if(msg.content.startsWith ('.server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
@@ -272,7 +240,7 @@ client.on('message', message => {
             .setThumbnail(message.author.avatarURL)
             .setFooter(message.author.username, message.author.avatarURL)
 
-        .setDescription(`**:battery: حالة اعضاء السيرفر**
+        .setDescription(`**:battery: Status Member**
     
 **:green_heart: Online**  **[ ${message.guild.members.filter(m=>m.presence.status == 'online').size} ]**
 **:yellow_heart: Idle**       **[ ${message.guild.members.filter(m=>m.presence.status == 'idle').size} ]**  
@@ -280,7 +248,6 @@ client.on('message', message => {
 **:black_heart: Offline** **[ ${message.guild.members.filter(m=>m.presence.status == 'offline').size} ]** `)
 
         message.channel.send()
-
         message.channel.sendEmbed(embed)
     }
 });
@@ -397,19 +364,18 @@ client.on('message', async message => {
           }
       });
 
-//! KinG66S.❤#0045
-var KinG66S = {};//! KinG66S.❤#0045
-client.on('guildMemberRemove', member => {//! KinG66S.❤#0045
-KinG66S[member.id] = {roles: member.roles.array()};//! KinG66S.❤#0045
+
+var Sadd = {};//! KinG66S.❤#0045
+client.on('guildMemberRemove', member => {
+Sadd[member.id] = {roles: member.roles.array()};
 });
-//! KinG66S.❤#0045 //! KinG66S.❤#0045 //! KinG66S.❤#0045 
-client.on('guildMemberAdd', member => {//! KinG66S.❤#0045
-if(!KinG66S[member.user.id]) return;//! KinG66S.❤#0045
-console.log(KinG66S[member.user.id].roles.length);//! KinG66S.❤#0045
-for(let i = 0; i < KinG66S[member.user.id].roles.length + 1; i++) {//! KinG66S.❤#0045
-member.addRole(KinG66S[member.user.id].roles.shift());//! KinG66S.❤#0045
-}//! KinG66S.❤#0045
-});//! KinG66S.❤#0045
+client.on('guildMemberAdd', member => {
+if(Sadd[member.user.id]) return;
+console.log(Sadd[member.user.id].roles.length)
+for(let i = 0; i < Sadd[member.user.id].roles.length + 1; i++) {
+member.addRole(Sadd[member.user.id].roles.shift());
+}
+});
 
   client.on("guildBanAdd", (guild, member) => {
   client.setTimeout(() => {
@@ -482,7 +448,7 @@ client.on('message', msg => {
     if(!msg.channel.guild) return msg.reply('**This Command For Server Only**');
     if(!msg.guild.channels.find('name', 'vote')) return msg.reply('Create ``vote`` Chat');
     let args = msg.content.split(" ").slice(1);
-    if(!args[1]) return msg.reply('.vote [text')
+    if(!args[1]) return msg.reply('.vote [text]')
     //غيره على حسب اسم روم الاقتراحات او سوي مثل اسم الروم الموجود هنا
     if(msg.guild.channels.find('name', 'vote')) {
       //غيره هنا كمان اذا غيرت فوق
@@ -514,7 +480,7 @@ client.on('message', msg => {
   
   if(message.author.bot) return;
   if(message.channel.type === 'dm') return;
-  if(message.content.startsWith(prefix + "bot")) {
+  if(message.content.startsWith(".bot")) {
     let ramUsage = (process.memoryUsage().rss / 1048576).toFixed();
     let upTime = timeCon(process.uptime());
     let createdAt = moment(client.user.createdAt).fromNow();
