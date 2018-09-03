@@ -275,8 +275,8 @@ client.on('message', message => {
     .addField(`${prefix}temp on`, "**Tempority rooms On**")
     .addField(`${prefix}temp off`, "**Tempority rooms Off**")
     .addField(`${prefix}temptime <time>`, "** Set temp rooms time 1000=1sec**")
-    .addField(`${prefix}message <@iduser>`, "**Send message to person with ur name**")
-    .addField(`${prefix}msg <@iduser>`, "**Send message to person without ur name**")
+    .addField(`${prefix}message <mention>`, "**Send message to person with ur name**")
+    .addField(`${prefix}msg <mention>`, "**Send message to person without ur name**")
     message.channel.send(`✅ | Done | Check Your DirectMessages <@${message.author.id}>`)
     message.author.send({embed})
   } 
@@ -465,50 +465,41 @@ client.on('message', msg => {
 
 });
 
-  client.on('message',async message => {
-  function timeCon(time) {
-  let days = Math.floor(time % 31536000 / 86400);
-  let hours = Math.floor(time % 31536000 % 86400 / 3600);
-  let minutes = Math.floor(time % 31536000 % 86400 % 3600 / 60);
-  let seconds = Math.round(time % 31536000 % 86400 % 3600 % 60);
-  days = days > 9 ? days : '0' + days;
-  hours = hours > 9 ? hours : '0' + hours;
-  minutes = minutes > 9 ? minutes : '0' + minutes;
-  seconds = seconds > 9 ? seconds : '0' + seconds;
-  return `${days > 0 ? `${days} Days ` : ''}${(hours || days) > 0 ? `${hours} Hours ` : ''}${minutes} Mins ${seconds} Secs`;
-  }
-  
-  if(message.author.bot) return;
-  if(message.channel.type === 'dm') return;
-  if(message.content.startsWith(".bot")) {
-    let ramUsage = (process.memoryUsage().rss / 1048576).toFixed();
-    let upTime = timeCon(process.uptime());
-    let createdAt = moment(client.user.createdAt).fromNow();
-
-let m = await message.channel.send(`\`\`\`asciidoc\n= Normal Information =
-Creator :: ${client.users.get("470282325083815956").username} - ${createdAt}
-Ping :: ${client.pings[0]} ms
-UpTime :: ${upTime}
-
-= Servers Information =
-Servers :: ${client.guilds.size}
-Users :: ${client.users.size}
-Channels :: ${client.channels.size}
-
-= Developer Information =
-NodeJS :: ${process.version}
-DiscordJS :: ${Discord.version}
-Arch :: ${process.arch}
-Platform :: ${process.platform}
-
-= Host Information =
-UsedHeap :: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024 * 100) / 100} MB
-Heap :: ${Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100} MB
-Ram :: ${ramUsage} MB
-Rss :: ${Math.round(process.memoryUsage().rss / 1024 / 1024 * 100) / 100} MB
-\`\`\``);
-  }
+function timeCon(time) {
+    let days = Math.floor(time % 31536000 / 86400)
+    let hours = Math.floor(time % 31536000 % 86400 / 3600)
+    let minutes = Math.floor(time % 31536000 % 86400 % 3600 / 60)
+    let seconds = Math.round(time % 31536000 % 86400 % 3600 % 60)
+    days = days > 9 ? days : '0' + days
+    hours = hours > 9 ? hours : '0' + hours
+    minutes = minutes > 9 ? minutes : '0' + minutes
+    seconds = seconds > 9 ? seconds : '0' + seconds
+    return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
+}
+client.on('message', message => {
+    if (message.content.startsWith("$info")) {
+  message.channel.send({
+       embed: new Discord.RichEmbed()
+           .setAuthor(client.user.username,client.user.avatarURL)
+           .setThumbnail(client.user.avatarURL)
+            .setColor('RANDOM')
+            .setTitle('``INFO هنا اسم بوتك`` ')
+            .addField('``Uptime``', [timeCon(process.uptime())], true)
+            .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
+            .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
+            .addField('``servers``', [client.guilds.size], true)
+            .addField('``channels``' , `[ ${client.channels.size} ]` , true)
+            .addField('``Users``' ,`[ ${client.users.size} ]` , true)
+            .addField('``My Name``' , `[ ${client.user.tag} ]` , true)
+            .addField('``My ID``' , `[ ${client.user.id} ]` , true)
+            .addField('``My Prefix``' , `.` , true)
+            .addField('``My Language``' , `[ Java Script ]` , true)
+	    .addField('``Support Server``' , `[ **Soon** ]` , true)
+.setFooter('By | Sadd...🖤#9909')
+    })
+}
 });
+
 
 client.on("message", function(message) {
 let messageArray = message.content.split(" ");
