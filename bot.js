@@ -5,7 +5,7 @@ const prefix = '.'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Officer Mukhld`,"http://twitch.tv/idk")
+client.user.setGame(`.help | .invite`,"http://twitch.tv/idk")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -477,13 +477,13 @@ function timeCon(time) {
     return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
 }
 client.on('message', message => {
-    if (message.content.startsWith("$info")) {
+    if (message.content.startsWith(".info")) {
   message.channel.send({
        embed: new Discord.RichEmbed()
            .setAuthor(client.user.username,client.user.avatarURL)
            .setThumbnail(client.user.avatarURL)
             .setColor('RANDOM')
-            .setTitle('``INFO هنا اسم بوتك`` ')
+            .setTitle('``Im Funny bot`` ')
             .addField('``Uptime``', [timeCon(process.uptime())], true)
             .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
             .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
@@ -496,7 +496,11 @@ client.on('message', message => {
             .addField('``My Language``' , `[ Java Script ]` , true)
 	    .addField('``Support Server``' , `[ **Soon** ]` , true)
 .setFooter('By | Sadd...🖤#9909')
-    })
+	  
+	  
+.setAuthor(client.user.username,client.user.avatarURL)
+.setThumbnail(client.user.avatarURL)
+  })
 }
 });
 
