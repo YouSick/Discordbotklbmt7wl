@@ -34,6 +34,24 @@ client.user.setGame(`.help | .invite`,"http://twitch.tv/idk")
 
 
 
+   client.on("message",  message => {
+
+         let args = message.content.split(' ').slice(1);
+    if(message.content.startsWith('.nick')) {
+        if (!message.member.hasPermission("MANAGE_NICKNAMES")) {
+            message.channel.send(".nick <user> <nick>")
+        } else {
+            if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAMES')) return message.reply(' ❌Sorry The Bot Dont have ').catch(console.error);
+            let changenick = message.mentions.users.first();
+            let username = args.slice(1).join(' ')
+            if (username.length < 1) return message.reply('.nick <user> <nick>').catch(console.error);
+            if (message.mentions.users.size < 1) return message.author.send('You must mention a user to change their nickname. ❌').catch(console.error);
+            message.guild.member(changenick.id).setNickname(username);
+            message.channel.send("Done Changed The Nickname : " + changenick + "")
+        }
+    }});
+
+
 
  client.on("message", message => {
     var prefix = ".";
