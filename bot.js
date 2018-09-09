@@ -300,6 +300,19 @@ client.on('message', message => {
   } 
 });
 
+
+client.on('message', message =>{
+ if(message.contect == ".servers"){
+    var embed = new Discord.RichEmbed()
+    .setFooter(`Request By Sadd...#9909`)
+	 .setThumbnail(message.author.avtarURL)
+	 .setColor(`RANDOM`)
+	 .addField("Name __{guild.id}__")
+         .addField(`Love <3`)
+         message.channel.send({embed})
+    }
+});
+
  client.on('message', message => {
         var  user = message.mentions.users.first() || message.author;
     if (message.content.startsWith(".avatar")) {
@@ -383,7 +396,7 @@ client.on('message', async message => {
       });
 
 
-var Sadd = {};//! KinG66S.❤#0045
+var Sadd = {};
 client.on('guildMemberRemove', member => {
 Sadd[member.id] = {roles: member.roles.array()};
 });
