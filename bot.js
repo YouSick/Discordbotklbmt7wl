@@ -44,8 +44,8 @@ client.user.setGame(`.help | .invite`,"http://twitch.tv/idk")
             if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAMES')) return message.reply(' ❌Sorry The Bot Dont have ').catch(console.error);
             let changenick = message.mentions.users.first();
             let username = args.slice(1).join(' ')
-            if (username.length < 1) return message.reply('.nick <user> <nick>').catch(console.error);
-            if (message.mentions.users.size < 1) return message.author.send('You must mention a user to change their nickname. ❌').catch(console.error);
+            if (username.length < 1) return message.reply('.nick [mention user] [nickname]').catch(console.error);
+            if (message.mentions.users.size < 1) return message.channel.send('You must mention a user to change their nickname. ❌').catch(console.error);
             message.guild.member(changenick.id).setNickname(username);
             message.channel.send("Done Changed The Nickname : " + changenick + "")
         }
@@ -123,7 +123,7 @@ msg.delete();
 client.on('message', message => {
     if (message.author.id === client.user.id) return;
             if (message.content.startsWith(prefix + "ping")) {
-        message.channel.sendMessage(':white_check_mark: Pong! In `' + `${client.ping}` + ' ms`');
+        message.channel.sendMessage(':white_check_mark: Pong! In `' + `${client.ping}` + 'ms`');
     }
 });
 
@@ -166,7 +166,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You D
 client.on('message', message => {
 if (message.content.startsWith(".ban")) {
     var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send("Mention him");
+    if(!mention) return message.channel.send(".ban [user mention]");
 
     mention.ban("By: " + message.author.tag);
     
@@ -180,7 +180,7 @@ if (message.content.startsWith(".ban")) {
 client.on('message', message => {
 if (message.content.startsWith(".kick")) {
     var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send("Mention him");
+    if(!mention) return message.channel.send(".kick [user mention]");
 
     mention.kick("By: " + message.author.tag);
     
@@ -204,13 +204,13 @@ client.on('message', message =>{
      
     if(cmd === `${prefix}report`){
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        if(!rUser) return message.channel.send("Idk who 2 report ??");
+        if(!rUser) return message.channel.send(".report [user mention] [reason]");
         let reason = args.join(" ").slice(22);
-        if(!reason) return message.channel.send("What is the reason ??");
+        if(!reason) return message.channel.send(".report [usermention] [reason]");
     
         let reportEmbed = new Discord.RichEmbed()
         .setTitle("User just reported...")
-        .setColor("#f7abab")
+        .setColor("RANDOM")
         .addField("- Reported User :", `${rUser} (${rUser.id})`)
         .addField("- Reported By :", `${message.author} (${message.author.id})`)
         .addField("- Reported In :", message.channel)
@@ -262,7 +262,7 @@ client.on('message', message => {
     
 **:green_heart: Online**  **[ ${message.guild.members.filter(m=>m.presence.status == 'online').size} ]**
 **:yellow_heart: Idle**       **[ ${message.guild.members.filter(m=>m.presence.status == 'idle').size} ]**  
-**:heart: DND**     **[ ${message.guild.members.filter(m=>m.presence.status == 'dnd').size} ]**
+**:heart: Do Not Disturb**     **[ ${message.guild.members.filter(m=>m.presence.status == 'dnd').size} ]**
 **:black_heart: Offline** **[ ${message.guild.members.filter(m=>m.presence.status == 'offline').size} ]** `)
 
         message.channel.send()
@@ -300,25 +300,13 @@ client.on('message', message => {
   } 
 });
 
-
-client.on('message', message =>{
- if(message.contect == ".servers"){
-    var embed = new Discord.RichEmbed()
-    .setFooter(`Request By Sadd...#9909`)
-	 .setThumbnail(message.author.avtarURL)
-	 .setColor(`RANDOM`)
-	 .addField("Name __{guild.id}__")
-         .addField(`Love <3`)
-         message.channel.send({embed})
-    }
-});
-
  client.on('message', message => {
         var  user = message.mentions.users.first() || message.author;
     if (message.content.startsWith(".avatar")) {
 message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
+
 const temp = {};
 client.on('message', async message => {
  if(message.channel.type === "dm") return;
@@ -329,14 +317,14 @@ client.on('message', async message => {
       channel : 'Join to create room'
        }
         if(message.content.startsWith('.temp on')){
-         if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+         if(!message.member.hasPermission(`ADMINISTRATOR`)) return;
           var ggg= message.guild.createChannel('temp channels', 'category').then(cg => {
            var ccc =message.guild.createChannel('Join to create room', 'voice').then(ch => {
             ch.setParent(cg)
              message.channel.send('**Done ,**')
               client.on('message' , message => {
                if(message.content === '.temp off') {
-                if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+                if(!message.member.hasPermission(`ADMINISTRATOR`)) return;
                  cg.delete()
                   ch.delete()
                    message.channel.send('**Done ,**')
@@ -473,28 +461,6 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 }
 });
 
-client.on('message', msg => {
-  //Code By : YouSick_#9909
-  if(msg.content.startsWith('.vote')) {
-    if(!msg.channel.guild) return msg.reply('**This Command For Server Only**');
-    if(!msg.guild.channels.find('name', 'vote')) return msg.reply('Create ``vote`` Chat');
-    let args = msg.content.split(" ").slice(1);
-    if(!args[1]) return msg.reply('.vote [text]')
-    //غيره على حسب اسم روم الاقتراحات او سوي مثل اسم الروم الموجود هنا
-    if(msg.guild.channels.find('name', 'vote')) {
-      //غيره هنا كمان اذا غيرت فوق
-      msg.guild.channels.find('name', 'vote').send(`
-     Vote create by : ${msg.member}
-  ➠ ${args.join(" ").split(msg.mentions.members.first()).slice(' ')}
-      `)
-      .then(function (message) {
-        message.react('✅')
-        message.react('❌')
-      })
-      }
-    }
-
-});
 
 function timeCon(time) {
     let days = Math.floor(time % 31536000 / 86400)
@@ -508,7 +474,7 @@ function timeCon(time) {
     return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
 }
 client.on('message', message => {
-    if (message.content.startsWith(".info")) {
+    if (message.content.startsWith(".bot")) {
   message.channel.send({
        embed: new Discord.RichEmbed()
            .setAuthor(client.user.username,client.user.avatarURL)
@@ -1229,7 +1195,7 @@ client.on('message', message => {
      })
 				
 	           message.channel.sendMessage({embed: new Discord.RichEmbed()
-     .setColor('GREEN').setAuthor(`${message.author.username}'`, message.author.avatarURL).setDescription('``Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¹Ù…Ù„ Ø¹Ù„Ù‰ Ø§Ù„Ø§Ù„ÙˆØ§Ù† |âœ…``')
+     .setColor('GREEN').setAuthor(`${message.author.username}'`, message.author.avatarURL).setDescription('``Sucess! Complete Create Colors``')
 	 });
 				
 	}});
