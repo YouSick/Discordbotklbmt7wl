@@ -39,7 +39,7 @@ client.user.setGame(`.help | Beta 1.1`,"http://twitch.tv/idk")
          let args = message.content.split(' ').slice(1);
     if(message.content.startsWith('.nick')) {
         if (!message.member.hasPermission("MANAGE_NICKNAMES")) {
-            message.channel.send(".nick <user> <nick>")
+            message.channel.send(".nick mention nick")
         } else {
             if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAMES')) return message.reply(' ❌Sorry The Bot Dont have ').catch(console.error);
             let changenick = message.mentions.users.first();
@@ -85,7 +85,7 @@ if(!message.member.hasPermission('MUTE_MEMBERS')) return      message.channel.se
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
 let copy = "Dragon";
 let request = `Requested By ${message.author.username}`;
-if (!args) return message.reply('**Write a Word To Send it**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+if (!args) return message.reply('**Write a Word To Send it**');message.channel.send(`**Are You Sure To Send Boardcast\n Text:** \` ${args}\``).then(msg => {
 msg.react('✅')
 .then(() => msg.react('❌'))
 .then(() =>msg.react('✅'))
@@ -166,7 +166,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('You D
 client.on('message', message => {
 if (message.content.startsWith(".ban")) {
     var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send(".ban [user mention]");
+    if(!mention) return message.channel.send(".ban mention");
 
     mention.ban("By: " + message.author.tag);
     
@@ -180,7 +180,7 @@ if (message.content.startsWith(".ban")) {
 client.on('message', message => {
 if (message.content.startsWith(".kick")) {
     var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send(".kick [user mention]");
+    if(!mention) return message.channel.send(".kick mention");
 
     mention.kick("By: " + message.author.tag);
     
@@ -204,12 +204,12 @@ client.on('message', message =>{
      
     if(cmd === `${prefix}report`){
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        if(!rUser) return message.channel.send(".report [user mention] [reason]");
+        if(!rUser) return message.channel.send("Dont Forget mention user|.report mention reason");
         let reason = args.join(" ").slice(22);
-        if(!reason) return message.channel.send(".report [usermention] [reason]");
+        if(!reason) return message.channel.send("Dont Forget Write Reason|.report mention reason");
     
         let reportEmbed = new Discord.RichEmbed()
-        .setTitle("User just reported...")
+        .setTitle("**__New Report__**")
         .setColor("RANDOM")
         .addField("- Reported User :", `${rUser} (${rUser.id})`)
         .addField("- Reported By :", `${message.author} (${message.author.id})`)
@@ -302,7 +302,7 @@ client.on('message', message => {
 
  client.on('message', message => {
         var  user = message.mentions.users.first() || message.author;
-    if (message.content.startsWith(".avatar")) {
+    if (message.content.startsWith(prefix + 'avatar')) {
 message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
@@ -313,8 +313,8 @@ client.on('message', async message => {
   if(message.author.bot) return;
    if(!temp[message.guild.id]) temp[message.guild.id] = {
     time: "3000",
-     category : 'temp channels',
-      channel : 'Join to create room'
+     category : 'beta',
+      channel : 'beta'
        }
         if(message.content.startsWith('.temp on')){
          if(!message.member.hasPermission(`ADMINISTRATOR`)) return;
